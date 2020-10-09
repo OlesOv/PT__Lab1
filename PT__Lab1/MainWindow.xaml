@@ -5,8 +5,144 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PT__Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="900">
     <Grid>
-        <Label Name="Label"></Label>
+        <TabControl>
+            <TabItem Header="Інформація про фільм">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" Grid.Column="0" Name="MovieCB" Height="20" Width="380" SelectionChanged="MovieCB_SelectionChanged"/>
+                    <ComboBox Grid.Row="0" Grid.Column="2" Name="CreditsCB" Height="20" Width="380" SelectionChanged="CreditsCB_SelectionChanged"/>
+                    <ScrollViewer Grid.Row="1" Grid.Column="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="102"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="0*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Бюджет:" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="BudgetBox" Grid.Column="1" VerticalAlignment="Center" />
+                            <Label Content="Жанри:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="GenresBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Label Content="Сайт:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center">
+                                <Hyperlink x:Name="HomepageBox" RequestNavigate="HomepageBox_RequestNavigate"/>
+                            </TextBlock>
+                            <Label Content="id:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="IdBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" />
+                            <Label Content="Ключові слова:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="KeywordsBox" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Label Content="Мова оригіналу:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="OLBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" />
+                            <Label Content="Назва оригіналу:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="OTBox" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+                            <Label Content="Огляд:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="OverviewBox" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <Label Content="Популярність:" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="PopularityBox" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center"/>
+                            <Label Content="Компанії:" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="ProdCompaniesBox" Grid.Column="1" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <Label Content="Країни:" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="ProdCountriesBox" Grid.Column="1" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Label Content="Дата виходу:" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="ReleaseDateBox" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" />
+                            <Label Content="Дохід:" Grid.Row="12" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="RevenueBox" Grid.Column="1" Grid.Row="12" VerticalAlignment="Center" />
+                            <Label Content="Тривалість:" Grid.Row="13" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="RuntimeBox" Grid.Column="1" Grid.Row="13" VerticalAlignment="Center" />
+                            <Label Content="Мови озвучки:" Grid.Row="14" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="SLBox" Grid.Column="1" Grid.Row="14" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Label Content="Статус:" Grid.Row="15" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="StatusBox" Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" />
+                            <Label Content="Слоган:" Grid.Row="16" Grid.Column="0"/>
+                            <TextBlock x:Name="TaglineBox" Grid.Column="1" Grid.Row="16" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Label Content="Назва:" Grid.Row="17" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="TitleBox" Grid.Column="1" Grid.Row="17" VerticalAlignment="Center" />
+                            <Label Content="Середня оцінка:" Grid.Row="18" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="RateBox" Grid.Column="1" Grid.Row="18" VerticalAlignment="Center" />
+                            <Label Content="Кількість оцінок:" Grid.Row="19" Grid.Column="0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="VotesAmountBox" Grid.Column="1" Grid.Row="19" VerticalAlignment="Center" />
+                        </Grid>
+                    </ScrollViewer>
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Grid.RowSpan="20"/>
+                    <ScrollViewer Grid.Row="1" Grid.Column="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Id фільму:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Name="movieIdBox" VerticalAlignment="Center"/>
+                            <Label Content="Назва фільму:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Name="movieTitleBox" VerticalAlignment="Center"/>
+                            <DataGrid Grid.Row="2" Grid.ColumnSpan="2" Grid.Column ="0" ItemsSource="{Binding}" Name="CastDG" AutoGenerateColumns="false">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Порядок" Binding="{Binding order}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Персонаж" Binding="{Binding character}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Стать" Binding="{Binding gender}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Актор" Binding="{Binding name}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="cast_id" Binding="{Binding cast_id}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="credit_id" Binding="{Binding credit_id}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="3" Grid.ColumnSpan="2" Grid.Column ="0" ItemsSource="{Binding}" Name="CrewDG" AutoGenerateColumns="false">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Відділ" Binding="{Binding department}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Посада" Binding="{Binding job}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Ім'я" Binding="{Binding name}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Стать" Binding="{Binding gender}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="credit_id" Binding="{Binding credit_id}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Статистика">
+                <Grid Background="#FFE5E5E5">
+
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

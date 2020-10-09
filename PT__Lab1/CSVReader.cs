@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using KBCsv;
 using System.Text.Json;
+using System.Collections.ObjectModel;
 
 namespace PT_Lab1
 {
     public class CSVReader
     {
-        public static List<Credit> ReadCredits(string path)
+        public static ObservableCollection<Credit> ReadCredits(string path)
         {
-            List<Credit> res = new List<Credit>();
+            ObservableCollection<Credit> res = new ObservableCollection<Credit>();
             using (var streamReader = new StreamReader(path))
             using (var csvReader = new CsvReader(streamReader))
             {
@@ -28,9 +29,9 @@ namespace PT_Lab1
             return res;
         }
 
-        public static List<Movie> ReadMovies(string path)
+        public static ObservableCollection<Movie> ReadMovies(string path)
         {
-            List<Movie> res = new List<Movie>();
+            ObservableCollection<Movie> res = new ObservableCollection<Movie>();
             using (var streamReader = new StreamReader(path))
             using (var csvReader = new CsvReader(streamReader))
             {
