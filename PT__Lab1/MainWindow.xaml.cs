@@ -25,8 +25,8 @@ namespace PT__Lab1
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Movie> movies = CSVReader.ReadMovies(@"C:\Users\paren\Desktop\archive\tmdb_5000_movies.csv");
-        ObservableCollection<Credit> credits = CSVReader.ReadCredits(@"C:\Users\paren\Desktop\archive\tmdb_5000_credits.csv");
+        ObservableCollection<Movie> movies = CSVReader.ReadMovies(AppDomain.CurrentDomain.BaseDirectory + @"\tmdb_5000_movies.csv");
+        ObservableCollection<Credit> credits = CSVReader.ReadCredits(AppDomain.CurrentDomain.BaseDirectory + @"\tmdb_5000_credits.csv");
         public MainWindow()
         {
             InitializeComponent();

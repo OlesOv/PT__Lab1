@@ -140,7 +140,7 @@
 
             <TabItem Header="Статистика">
                 <Grid Background="#FFE5E5E5">
-
+                    
                 </Grid>
             </TabItem>
         </TabControl>
