@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PT__Lab1;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,5 +107,147 @@ namespace PT_Lab1
             Array.Sort(arr);
             return arr[Convert.ToInt32(arr.Length * quan)];
         }
+
+        public static List<HistoColumn> getBudgets(IEnumerable<Movie> values)
+        {
+            List<HistoColumn> res = new List<HistoColumn>();
+            Int64 max = 0;
+            foreach (var p in values)
+            {
+                if (p.budget > max) max = p.budget;
+            }
+            foreach (var p in values)
+            {
+                res.Add(new HistoColumn() { Title = p.title, Height = ((float)p.budget / (float)max) * 200 });
+            }
+            return res;
+        }
+        public static List<double> getBudgetsNum(IEnumerable<Movie> values)
+        {
+            List<double> res = new List<double>();
+            foreach (var p in values)
+            {
+                res.Add(p.budget);
+            }
+            return res;
+        }
+        public static List<double> getRevenuesNum(IEnumerable<Movie> values)
+        {
+            List<double> res = new List<double>();
+            foreach (var p in values)
+            {
+                res.Add(p.revenue);
+            }
+            return res;
+        }
+        public static List<HistoColumn> getRevenues(IEnumerable<Movie> values)
+        {
+            List<HistoColumn> res = new List<HistoColumn>();
+            Int64 max = 0;
+            foreach (var p in values)
+            {
+                if (p.revenue > max) max = p.revenue;
+            }
+            foreach (var p in values)
+            {
+                res.Add(new HistoColumn() { Title = p.title, Height = ((float)p.revenue / (float)max) * 200 });
+            }
+            return res;
+        }
+        public static List<HistoColumn> getGenres(IEnumerable<Movie> values)
+        {
+            List<HistoColumn> res = new List<HistoColumn>();
+            Int64 max = 0;
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            foreach (var p in values)
+            {
+                foreach(var i in p.genres)
+                {
+                    if (dict.ContainsKey(i.name))
+                    {
+                        dict[i.name]++;
+                        if (dict[i.name] > max) max = dict[i.name];
+                    }
+                    else dict.Add(i.name, 1);
+                }
+            }
+            foreach (var p in dict)
+            {
+                res.Add(new HistoColumn() { Title = p.Key, Height = ((float)p.Value / (float)max) * 200 });
+            }
+            return res;
+        }
+
+        public static List<HistoColumn> getWR(IEnumerable<Movie> values)
+        {
+            long minVotes = Int64.MaxValue;
+            double sum = 0;
+            foreach(var p in values)
+            {
+                if (p.vote_count < minVotes) minVotes = p.vote_count;
+                sum += p.vote_average;
+            }
+            sum /= values.Count();
+            List<HistoColumn> res = new List<HistoColumn>();
+            foreach (var p in values)
+            {
+                double wr;
+                wr = p.vote_count + minVotes != 0 ? (p.vote_count / (p.vote_count + minVotes)) * p.vote_average + (p.vote_count / (p.vote_count + minVotes)) * sum : 0;
+                res.Add(new HistoColumn() { Title = p.title, Height = wr });
+            }
+            return res;
+        }
+        public static List<HistoColumn> getWRM(IEnumerable<Movie> values)
+        {
+            long minVotes = Int64.MaxValue;
+            List<double> sum = new List<double>();
+            foreach (var p in values)
+            {
+                if (p.vote_count < minVotes) minVotes = p.vote_count;
+                sum.Add(p.vote_average);
+            }
+            List<HistoColumn> res = new List<HistoColumn>();
+            foreach (var p in values)
+            {
+                double wr;
+                wr = p.vote_count + minVotes != 0 ? (p.vote_count / (p.vote_count + minVotes)) * p.vote_average + (p.vote_count / (p.vote_count + minVotes)) * Median(sum) : 0;
+                res.Add(new HistoColumn() { Title = p.title, Height = wr });
+            }
+            return res;
+        }
+        public static List<Movie> FindByGenre(IEnumerable<Movie> values, string Genre)
+        {
+            List<Movie> res = new List<Movie>();
+            foreach(var p in values)
+            {
+                foreach(var i in p.genres)
+                {
+                    if (i.name == Genre)
+                    {
+                        res.Add(p);
+                        break;
+                    }
+                }
+            }
+            return res;
+        }
+        public static List<HistoColumn> Cut(List<HistoColumn> values, int num)
+        {
+            var t = values.OrderByDescending(x => x.Height).ToList();
+            var res = new List<HistoColumn>();
+            for(int i = 0; i < num; i++)
+            {
+                res.Add(t[i]);
+            }
+            return res;
+        }
+    }
+
+
+
+public class HistoColumn
+    {
+        public string Title { get; set; }
+        public double Height { get; set; }
     }
 }

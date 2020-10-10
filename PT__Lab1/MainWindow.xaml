@@ -140,8 +140,150 @@
 
             <TabItem Header="Статистика">
                 <Grid Background="#FFE5E5E5">
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Бюджети:"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Доходи:"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Жанри:"/>
+                    <ScrollViewer Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl ItemsSource="{Binding}" x:Name="BudgetsHisto">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Height="{Binding Height}" Width="5" VerticalAlignment="Bottom"
+                       Fill="Red" Stroke="Gray" Margin="-1.0" ToolTip="{Binding Title}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                    <ScrollViewer Margin="10, 10, 10, 10" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl ItemsSource="{Binding}" x:Name="RevenueHisto">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Height="{Binding Height}" Width="5" VerticalAlignment="Bottom"
+                       Fill="Green" Stroke="Gray" Margin="-1.0" ToolTip="{Binding Title}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Середнє:"/>
+                    <TextBlock x:Name="AverageBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="Середнє:"/>
+                    <TextBlock x:Name="AverageRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Дисперсія:"/>
+                    <TextBlock x:Name="DispersionBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+                    <Label Grid.Row="3" Grid.Column="1" Content="Дисперсія:"/>
+                    <TextBlock x:Name="DispersionRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Відхилення:"/>
+                    <TextBlock x:Name="DivergenceBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
+                    <Label Grid.Row="4" Grid.Column="1" Content="Відхилення:"/>
+                    <TextBlock x:Name="DivergenceRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Медіана:"/>
+                    <TextBlock x:Name="MedianBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5"/>
+                    <Label Grid.Row="5" Grid.Column="1" Content="Медіана:"/>
+                    <TextBlock x:Name="MedianRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+                    <Label Grid.Row="6" Grid.Column="0" Content="Мода:"/>
+                    <TextBlock x:Name="TrendBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="6"/>
+                    <Label Grid.Row="6" Grid.Column="1" Content="Мода:"/>
+                    <TextBlock x:Name="TrendRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+                    <Label Grid.Row="7" Grid.Column="0" Content="Масимум:"/>
+                    <TextBlock x:Name="MaxBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="7"/>
+                    <Label Grid.Row="7" Grid.Column="1" Content="Масимум:"/>
+                    <TextBlock x:Name="MaxRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+                    <Label Grid.Row="8" Grid.Column="0" Content="Мінімум:"/>
+                    <TextBlock x:Name="MinBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="8"/>
+                    <Label Grid.Row="8" Grid.Column="1" Content="Мінімум:"/>
+                    <TextBlock x:Name="MinRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="8"/>
+                    <Label Grid.Row="9" Grid.Column="0" Content="Розмах:"/>
+                    <TextBlock x:Name="DifferenceBudgetBox" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="9"/>
+                    <Label Grid.Row="9" Grid.Column="1" Content="Розмах:"/>
+                    <TextBlock x:Name="DifferenceRevenueBox" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="9"/>
+                    <Label Grid.Row="10" Grid.Column="0" Content="Квантиль:"/>
+                    <Label Grid.Row="10" Grid.Column="1" Content="Квантиль:"/>
+                    <TextBox Grid.Row="11" Name="QuantileBudget" Grid.Column="0" BorderThickness="2" TextChanged="QuantileBudget_TextChanged"/>
+                    <TextBox Grid.Row="11" Name="QuantileRevenue" Grid.Column="1" BorderThickness="2" TextChanged="QuantileRevenue_TextChanged"/>
+                    <TextBlock Grid.Row="12" Grid.Column="0" Name="QBBox"/>
+                    <TextBlock Grid.Row="12" Grid.Column="1" Name="QRBox"/>
+
+
+                    <ScrollViewer Margin="10, 10, 10, 10" Grid.Row="1" Grid.Column="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl ItemsSource="{Binding}" x:Name="GenresHisto">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Height="{Binding Height}" Width="15" VerticalAlignment="Bottom"
+                       Fill="Blue" Stroke="Gray" Margin="-1.0" ToolTip="{Binding Title}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Тренд">
+                <ScrollViewer>
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Середнє:"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Медіана:"/>
+                        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="WRDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="WRMDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="ActionDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="2" Grid.Column="1" x:Name="ActionMDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="3" Grid.Column="0" x:Name="AdventureDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="3" Grid.Column="1" x:Name="AdventureMDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="4" Grid.Column="0" x:Name="FantasyDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="4" Grid.Column="1" x:Name="FantasyMDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="5" Grid.Column="0" x:Name="ScienceFictionDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="5" Grid.Column="1" x:Name="ScienceFictionMDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="6" Grid.Column="0" x:Name="CrimeDG" ItemsSource="{Binding}"/>
+                        <DataGrid Grid.Row="6" Grid.Column="1" x:Name="CrimeMDG" ItemsSource="{Binding}"/>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>
