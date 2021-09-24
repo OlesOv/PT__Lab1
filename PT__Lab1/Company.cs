@@ -2,6 +2,7 @@
 
 namespace PT_Lab1
 {
+    ////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     public class Company
     {
         public int id { get; set; }
